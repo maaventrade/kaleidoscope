@@ -2,7 +2,7 @@ package com.alexmochalov.kaleidoscope;
 
 import java.util.ArrayList;
 
-import com.example.cameraexample.R;
+import com.alexmochalov.kaleidoscope.R;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -102,7 +102,7 @@ public class DrawThread extends Thread{
         rectCameraSrc = new Rect(0,0, bitmapCamera.getWidth(), bitmapCamera.getHeight());
         paintButton.setAlpha(200);
         	
-		//setInformation("Init...");
+		setInformation("Init...");
         //if (chipsThread != null)
         //	chipsThread.setDrawThread(drawThread);
         
@@ -288,6 +288,11 @@ public class DrawThread extends Thread{
     	bitmapsToChips();
 		
     	if (chip == null){
+			paintInfo(canvas);
+			return;
+		}
+
+    	if (init){
 			paintInfo(canvas);
 			return;
 		}
@@ -582,6 +587,14 @@ public class DrawThread extends Thread{
 	
 	public void repaint(Canvas canvas) {
 		draw1(canvas, canvas.getWidth(), canvas.getHeight());
+	}
+
+
+	public void clearInformation() {
+		if (init){
+			init  = false;
+			mInformation = "";
+		}
 	}
 	
 }

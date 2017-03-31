@@ -1,6 +1,6 @@
 package com.alexmochalov.kaleidoscope;
 
-import com.example.cameraexample.R;
+import com.alexmochalov.kaleidoscope.R;
 
 import android.os.Bundle;
 import android.preference.PreferenceFragment;

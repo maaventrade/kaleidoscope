@@ -3,7 +3,7 @@ package com.alexmochalov.kaleidoscope;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.cameraexample.R;
+import com.alexmochalov.kaleidoscope.R;
 
 import android.content.Context;
 import android.graphics.Bitmap;

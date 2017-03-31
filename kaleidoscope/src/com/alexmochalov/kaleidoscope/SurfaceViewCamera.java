@@ -1,30 +1,22 @@
 package com.alexmochalov.kaleidoscope;
 
 import java.io.IOException;
-import java.util.List;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
 import android.graphics.ImageFormat;
 import android.graphics.YuvImage;
 import android.hardware.Camera;
-import android.hardware.Camera.CameraInfo;
-import android.hardware.Camera.Parameters;
 import android.hardware.Camera.PreviewCallback;
 import android.hardware.Camera.Size;
-import android.preference.PreferenceManager;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
 import android.view.ViewGroup.LayoutParams;
-import android.widget.Toast;
 
 public class SurfaceViewCamera extends SurfaceView implements Callback, PreviewCallback, Camera.PictureCallback, Camera.AutoFocusCallback {
 
@@ -152,14 +144,18 @@ public class SurfaceViewCamera extends SurfaceView implements Callback, PreviewC
 		
     	BitmapFactory.Options options = new BitmapFactory.Options();
     	options.inMutable = true;
+    	
     	Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length, options);
     	
     	int left = (int)(bitmap.getWidth()-mSurfaceViewDrawable.maskWidth * scale)/2;
     	int top = (int)(bitmap.getHeight()-mSurfaceViewDrawable.maskHeight*scale)/2;
+    	
     	int right = (int)(left+mSurfaceViewDrawable.maskWidth*scale);
     	int bottom = (int)(top+mSurfaceViewDrawable.maskHeight*scale);
     	
     	Bitmap croppedBitmap = Bitmap.createBitmap(bitmap, left, top, right-left, bottom-top);
+    	
+    	bitmap = Bitmap.createBitmap(mSurfaceViewDrawable.getWidth(), mSurfaceViewDrawable.getHeight(), Config.ARGB_8888);;
     	
 		mSurfaceViewDrawable.setBitmapsMakeScreenShot(bitmap, croppedBitmap);
 

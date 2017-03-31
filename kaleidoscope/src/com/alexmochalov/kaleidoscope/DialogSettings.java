@@ -1,7 +1,7 @@
 package com.alexmochalov.kaleidoscope;
 
 import com.alexmochalov.kaleidoscope.SurfaceViewDrawable.TouchEventCallback;
-import com.example.cameraexample.R;
+import com.alexmochalov.kaleidoscope.R;
 
 import android.app.Dialog;
 import android.content.Context;

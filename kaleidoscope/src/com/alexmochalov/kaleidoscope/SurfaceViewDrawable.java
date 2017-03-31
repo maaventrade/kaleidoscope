@@ -8,7 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import com.example.cameraexample.R;
+import com.alexmochalov.kaleidoscope.R;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -80,7 +80,7 @@ public class SurfaceViewDrawable extends SurfaceView implements Callback {
 	private int slideY = 0; // 
 	private int slideX = 0; // 
 	
-	private boolean mMakePhoto = false;
+	//private boolean mMakePhoto = false;
 	
 	interface TouchEventCallback { 
 		void callbackCall(); 
@@ -257,6 +257,7 @@ public class SurfaceViewDrawable extends SurfaceView implements Callback {
     	Bitmap bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
 
 		if (drawThread != null)
+			drawThread.clearInformation();
 			/*
 			if (drawThread.isTest())
 				drawThread.setOriginalBitmap(
@@ -266,7 +267,7 @@ public class SurfaceViewDrawable extends SurfaceView implements Callback {
 		    				mask.getHeight()));
 			else	
 			*/	
-				drawThread.setOriginalBitmap(bitmap);
+			drawThread.setOriginalBitmap(bitmap);
 	}
 
 	
@@ -280,17 +281,17 @@ public class SurfaceViewDrawable extends SurfaceView implements Callback {
 		case MotionEvent.ACTION_DOWN:
 			
 			if (rectCameraDst.contains((int)x, (int)y)){
-				if (mMakePhoto)
+				if (drawThread.getShowIconPhoto())
 					if (touchEventCallback != null){
 						drawThread.setInformation("Saving...");
 						touchEventCallback.callbackPhoto();
 					}	
 					else;
-				else {
-					drawThread.setInformation("Saving...");
-					makeScreenShot(null);
-					drawThread.setInformation("");
-				}
+				//else {
+				//	drawThread.setInformation("Saving...");
+				//	makeScreenShot(null);
+				//	drawThread.setInformation("");
+				//}
 				break; 
 			}
 			
@@ -413,13 +414,15 @@ public class SurfaceViewDrawable extends SurfaceView implements Callback {
 	
 	public void setBitmapsMakeScreenShot(Bitmap bitmap, Bitmap bitmapMask) {
 		setBitmaps(bitmapMask);
+		
 		drawThread.repaint(new Canvas(bitmap));
+		
 		makeScreenShot(bitmap);
 		drawThread.setInformation("");
 	}
 
 	public void setMakePhoto(boolean  param){
-		mMakePhoto = param;
+		//mMakePhoto = param;
 	}
 	
 }
