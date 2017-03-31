@@ -97,7 +97,7 @@ public class DrawThread extends Thread{
 		
 		mShowIconPhoto = prefs.getBoolean("SHOWICONPHOTO", false);
         
-        
+         
         bitmapCamera = BitmapFactory.decodeResource(context.getResources(), R.drawable.btn_camera);
         rectCameraSrc = new Rect(0,0, bitmapCamera.getWidth(), bitmapCamera.getHeight());
         paintButton.setAlpha(200);
