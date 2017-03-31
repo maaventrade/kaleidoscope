@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Kaleidoscope</string>
+    <string name="action_settings">Settings</string>
+	<string name="glasses">Chips</string>
+    <string name="camera">Camera:</string>
+    <string name="backside">backside</string>
+    <string name="frontal">frontal</string>
+    <string name="scale">Scale:</string>
+    <string name="auto_sliding">Auto sliding:</string>
+    <string name="about">About</string>
+    <string name="about_1">Scottish physicist Sir David Brewster explored light polarisation. One of the results of his works was the invention of a kaleidoscope in 1816. Now there are many kinds of kaleidoscopes.</string>
+    <string name="about_2">This application was desined by Alexey Mochalov in 2015.</string>
+    <string name="about_3"><![CDATA[Let\'s send your notes and suggestions to <a  href=\"mailto:maaventrade@gmail.com\">maaventrade@gmail.com</a>]]></string>
+    <string name="close">Close</string>
+	<string name="exit">Exit from application</string>
+     
+    <string name="flash">Flash on</string>
+    <string name="icon_photo">Sсreenshot:</string>
+    <string name="show_shadow">Shadow</string>
+    
+<string name="checkbox1_title">CheckBox 1</string>
+<string name="checkbox1_summary">Summary of CheckBox 1</string>
+<string name="edittext1_title">EditText 1</string>
+<string name="edittext1_summary">Summary of EditText 1</string>
+<string name="list1_title">List 1</string>
+<string name="list1_summary">Summary of List 1</string>
+<string-array name="entries">
+    <item>one</item>
+    <item>two</item>
+    <item>three</item>
+</string-array>
+<string-array name="entry_values">
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+</string-array>
+
+
+</resources>

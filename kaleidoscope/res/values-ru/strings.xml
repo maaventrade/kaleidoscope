@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Калейдоскоп</string>
+    <string name="action_settings">Настройки</string>
+	<string name="glasses">Осколки</string>
+    <string name="camera">Камера:</string>
+    <string name="backside">тыльная</string>
+    <string name="frontal">фронтальная</string>
+    <string name="scale">Масштаб:</string>
+    <string name="auto_sliding">Авто прокрутка:</string>
+    <string name="about">О приложении</string>
+    <string name="about_1">Шотландский физик сэр Дэвид Брюстер изучал поляризацию света. Одним из результатов его работ стало изобретение калейдоскопа в 1816 году. Сейчас существуют множество типов калейдоскопов.</string>
+    <string name="about_2">Это приложение было написано Алексеем Мочаловым в 2015 году.</string>
+    <string name="about_3"><![CDATA[Присылайте ваши замечания и пожелания по адресу <a  href=\"mailto:maaventrade@gmail.com\">maaventrade@gmail.com</a>]]></string>
+    <string name="close">Закрыть</string>
+	<string name="exit">Выход из программы</string>
+	
+    <string name="flash">Подсветка</string>
+    <string name="icon_photo">Скриншот:</string>
+    <string name="show_shadow">Затенение</string>
+    
+</resources>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<color name= "bronze">#CD7F32</color>
+	<color name= "bronze_light">#FBF5EF</color>
+	<color name= "bronze_light2">#F0F1A0</color>
+	<color name= "bronze_light1">#DCAF7F</color>
+	
+	<color name= "blue">#3280CD</color>
+	<color name= "blue_dark">#1650AA</color>
+	<color name= "blue_light">#DFEBF7</color>
+	<color name= "blue_light_s">#7ACFFF</color>
+	
+	<color name= "navy">#000088</color>
+	<color name= "navy_light">#0000FF</color>
+	
+	<color name= "blue1">#6F757B</color>
+	
+	<color name= "gray_light">#EEEEEE</color>
+	
+	<color name= "sky_blue">#0099ff</color>
+	<color name= "white">#ffffff</color>
+		
+	<color name= "black">#000000</color>
+	
+	<color name= "salad">#C6FFC7</color>
+		
+	
+						
+</resources>
