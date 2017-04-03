@@ -88,6 +88,7 @@ public class DrawThread extends Thread{
 	private boolean init = true;
 	
 	private int mAngle = 0;
+	private float mAngleFloat = 0;
 
     public DrawThread(Context context, SurfaceHolder surfaceHolder){
     	mContext = context;
@@ -289,11 +290,9 @@ public class DrawThread extends Thread{
     private synchronized void draw(Canvas canvas, int width, int height, boolean hideButton){
     	bitmapsToChips();
 		
-		
-		/*
     	if (chip == null){
 			canvas.save();
-			canvas.rotate(90);
+			canvas.rotate(mAngle, mWidth >> 1, mHeight >> 1);
 			paintInfo(canvas);
 			canvas.restore();
 			return;
@@ -301,12 +300,11 @@ public class DrawThread extends Thread{
 
     	if (init){
 			canvas.save();
-			canvas.rotate(90);
+			canvas.rotate(mAngle, mWidth >> 1, mHeight >> 1);
 			paintInfo(canvas);
 			canvas.restore();
 			return;
 		}
-		*/
 
 		int dx = 0;
 		for (int y = (int)(deltaY); y <= height; y = y + maskHeight){
@@ -348,7 +346,15 @@ public class DrawThread extends Thread{
 		
 		if (! hideButton){
 			if (mShowIconPhoto && bitmapCamera != null){
+				
+				canvas.save();
+				canvas.rotate(mAngleFloat, 
+						mRectCameraDst.left + (mRectCameraDst.width() >> 1), 
+						mRectCameraDst.top + (mRectCameraDst.height() >> 1));
+				
 				canvas.drawBitmap(bitmapCamera, rectCameraSrc, mRectCameraDst, paintButton);
+				canvas.restore();
+				
 			}
 		}
 		
@@ -604,14 +610,22 @@ public class DrawThread extends Thread{
 
 
 	public void setAngle(float ax, float ay){
-		setInformation(
-			""+ax+"   "+ay);
+		//setInformation(
+		//	""+ax+"   "+ay);
+
+		if (Math.abs(ay) > 1 || Math.abs(ax) > 1){
+			if (ax > ay && ax > 0)
+				mAngle = 0;
+			else if (ay > ax && ay > 0)
+				mAngle = -90;
+			else if (ax < ay && ax < 0)
+				mAngle = 180;
+			else if (ay < ax && ay < 0)
+				mAngle = 90;
+		}
 		
-		if (ay >= ax && ax >= 0)
-			mAngle = -90;
-		else if (ay <= 0 && ax <= 0)
-			mAngle = 180;
-		else mAngle = 0;
+		mAngleFloat =  (float) (Math.atan2(ax, ay)/(Math.PI/180)) - 90;
+		
 	}
 	
 	public void clearInformation() {
