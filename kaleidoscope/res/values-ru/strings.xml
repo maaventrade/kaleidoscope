@@ -16,6 +16,9 @@
     <string name="close">Закрыть</string>
 	<string name="exit">Выход из программы</string>
 	
+	<string name="init">Init app...</string>
+	<string name="save">Save picture...</string>
+	
     <string name="flash">Подсветка</string>
     <string name="icon_photo">Скриншот:</string>
     <string name="show_shadow">Затенение</string>

@@ -220,15 +220,33 @@ public class MainActivity  extends Activity   implements SensorEventListener
 		      if (speed > SHAKE_THRESHOLD) {
 		    	  if (mSurfaceViewDrawable != null)
 		    		  mSurfaceViewDrawable.getDrawThread().resetThread();
-		    	  Log.d("sensor", "shake detected w/ speed: " + speed);
-		    	  Toast.makeText(this, "shake detected w/ speed: " + speed, Toast.LENGTH_SHORT).show();
+		    	 // Log.d("sensor", "shake detected w/ speed: " + speed);
+		    	 // Toast.makeText(this, "shake detected w/ speed: " + speed, Toast.LENGTH_SHORT).show();
 		      }
 		      last_x = ax;
 		      last_y = ay;
 		      last_z = az;
 		    }			
-			
 		}
+		float X_Axis = event.values[0]; 
+        float Y_Axis = event.values[1]; 
+		
+		if (mSurfaceViewDrawable.getDrawThread() != null){
+			mSurfaceViewDrawable.getDrawThread().setAngle(X_Axis, 
+							Y_Axis);
+		}
+			
+/*
+        if((X_Axis <= 6 && X_Axis >= -6) && Y_Axis > 5){
+			isLandscape = false; 
+        }
+        else if(X_Axis >= 6 || X_Axis <= -6){
+			isLandscape = true;
+        }
+*/
+		
+		
+		
 	}
 
 	@Override
@@ -239,3 +257,38 @@ public class MainActivity  extends Activity   implements SensorEventListener
 
 	
 }
+
+/*
+
+
+float[] g = new float[3]; 
+g = event.values.clone();
+
+double norm_Of_g = Math.sqrt(g[0] * g[0] + g[1] * g[1] + g[2] * g[2]);
+
+// Normalize the accelerometer vector
+g[0] = g[0] / norm_Of_g
+g[1] = g[1] / norm_Of_g
+g[2] = g[2] / norm_Of_g
+Then the inclination can be calculated as
+
+int inclination = (int) Math.round(Math.toDegrees(Math.acos(g[2])));
+Thus
+
+if (inclination < 25 || inclination > 155)
+{
+    // device is flat
+}
+else
+{
+    // device is not flat
+}
+For the case of laying flat, you have to use a compass to see how much the device is rotating from the starting position.
+
+For the case of not flat, the rotation (tilt) is calculated as follow
+
+int rotation = (int) Math.round(Math.toDegrees(Math.atan2(g[0], g[1])));
+Now rotation = 0 means the device is in normal position. That is portrait witho
+
+
+*/

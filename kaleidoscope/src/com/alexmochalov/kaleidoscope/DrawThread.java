@@ -86,6 +86,8 @@ public class DrawThread extends Thread{
 	private Rect rectInformation = null;
 	private Paint paintInformation = new Paint(Paint.ANTI_ALIAS_FLAG);
 	private boolean init = true;
+	
+	private int mAngle = 0;
 
     public DrawThread(Context context, SurfaceHolder surfaceHolder){
     	mContext = context;
@@ -102,7 +104,7 @@ public class DrawThread extends Thread{
         rectCameraSrc = new Rect(0,0, bitmapCamera.getWidth(), bitmapCamera.getHeight());
         paintButton.setAlpha(200);
         	
-		setInformation("Init...");
+		setInformation(context.getResources().getString(R.string.init));
         //if (chipsThread != null)
         //	chipsThread.setDrawThread(drawThread);
         
@@ -287,15 +289,24 @@ public class DrawThread extends Thread{
     private synchronized void draw(Canvas canvas, int width, int height, boolean hideButton){
     	bitmapsToChips();
 		
+		
+		/*
     	if (chip == null){
+			canvas.save();
+			canvas.rotate(90);
 			paintInfo(canvas);
+			canvas.restore();
 			return;
 		}
 
     	if (init){
+			canvas.save();
+			canvas.rotate(90);
 			paintInfo(canvas);
+			canvas.restore();
 			return;
 		}
+		*/
 
 		int dx = 0;
 		for (int y = (int)(deltaY); y <= height; y = y + maskHeight){
@@ -341,8 +352,10 @@ public class DrawThread extends Thread{
 			}
 		}
 		
+		canvas.save();
+		canvas.rotate(mAngle, mWidth >> 1, mHeight >> 1);
 		paintInfo(canvas);
-		
+		canvas.restore();
 		
     }
 
@@ -590,6 +603,17 @@ public class DrawThread extends Thread{
 	}
 
 
+	public void setAngle(float ax, float ay){
+		setInformation(
+			""+ax+"   "+ay);
+		
+		if (ay >= ax && ax >= 0)
+			mAngle = -90;
+		else if (ay <= 0 && ax <= 0)
+			mAngle = 180;
+		else mAngle = 0;
+	}
+	
 	public void clearInformation() {
 		if (init){
 			init  = false;

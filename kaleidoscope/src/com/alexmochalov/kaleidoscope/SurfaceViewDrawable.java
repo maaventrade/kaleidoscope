@@ -283,7 +283,7 @@ public class SurfaceViewDrawable extends SurfaceView implements Callback {
 			if (rectCameraDst.contains((int)x, (int)y)){
 				if (drawThread.getShowIconPhoto())
 					if (touchEventCallback != null){
-						drawThread.setInformation("Saving...");
+						drawThread.setInformation(mContext.getResources().getString(R.string.save));
 						touchEventCallback.callbackPhoto();
 					}	
 					else;

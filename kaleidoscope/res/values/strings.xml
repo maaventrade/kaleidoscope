@@ -16,6 +16,9 @@
     <string name="close">Close</string>
 	<string name="exit">Exit from application</string>
      
+	<string name="init">Init app...</string>
+	<string name="save">Save picture...</string>
+	
     <string name="flash">Flash on</string>
     <string name="icon_photo">Sсreenshot:</string>
     <string name="show_shadow">Shadow</string>

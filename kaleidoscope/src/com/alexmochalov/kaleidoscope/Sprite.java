@@ -318,7 +318,7 @@ for (int i = 0; i < SIZE; i++)
 			vx = (float) (vx + Scene.getAccelerationX());
 			vy = (float) (vy + Scene.getAccelerationY());
 
-			Log.d("","* "+vy);
+	//Log.d("","* "+vy);
 			
 			nX = 0;
 			nY = 0;
