@@ -155,16 +155,16 @@ public class DrawThread extends Thread{
         float[] stops = {0.4f, 0.5f};
         
         RadialGradient gradient = new android.graphics.RadialGradient(
-                width/2, height/2,
-                width, colors , stops ,
+                width >> 1, height>> 1,
+                Math.max(width, height), colors , stops ,
                 android.graphics.Shader.TileMode.CLAMP);
 
         p = new Paint();
         p.setShader(gradient);
         p.setColor(0xFF000000);
         p.setXfermode(new PorterDuffXfermode(Mode.DST_OUT));
-        tempCanvas.drawCircle(width/2, height/2,
-        		width, p);  
+        tempCanvas.drawCircle(width >> 1, height >> 1,
+        		Math.max(width, height), p);  
         
 		return bitmapShadow;
 	}
@@ -291,18 +291,18 @@ public class DrawThread extends Thread{
     	bitmapsToChips();
 		
     	if (chip == null){
-			canvas.save();
-			canvas.rotate(mAngle, mWidth >> 1, mHeight >> 1);
+			//canvas.save();
+			//canvas.rotate(mAngle, mWidth >> 1, mHeight >> 1);
 			paintInfo(canvas);
-			canvas.restore();
+			//canvas.restore();
 			return;
 		}
 
     	if (init){
-			canvas.save();
-			canvas.rotate(mAngle, mWidth >> 1, mHeight >> 1);
+			//canvas.save();
+			//canvas.rotate(mAngle, mWidth >> 1, mHeight >> 1);
 			paintInfo(canvas);
-			canvas.restore();
+			//canvas.restore();
 			return;
 		}
 
@@ -358,10 +358,10 @@ public class DrawThread extends Thread{
 			}
 		}
 		
-		canvas.save();
-		canvas.rotate(mAngle, mWidth >> 1, mHeight >> 1);
+		//canvas.save();
+		//canvas.rotate(mAngle, mWidth >> 1, mHeight >> 1);
 		paintInfo(canvas);
-		canvas.restore();
+		//canvas.restore();
 		
     }
 
@@ -585,22 +585,23 @@ public class DrawThread extends Thread{
 		}
     	
 		if (mShowShadow){
-			float radius = Math.min(width, height);
 	        Paint p = new Paint();
 	        
 	        int[] colors = {0x00000000, 0xFF000000}; 
-	        float[] stops = {0.4f, 1f};
+	        float[] stops;
+	        
+		    stops = new float[] {0.4f, 0.5f};
 	        
 	        RadialGradient gradient = new android.graphics.RadialGradient(
-	                width/2, height/2,
-	                radius, colors , stops ,
+	        		width >> 1, height >> 1,
+	        		Math.max(width, height), colors , stops ,
 	                android.graphics.Shader.TileMode.CLAMP);
 
 	        p.setShader(gradient);
 	        p.setColor(0xff000000);
 	        
-	        canvas.drawCircle(width/2, height/2,
-	        		radius, p);
+	        canvas.drawCircle(width >> 1, height >> 1,
+	        		Math.max(width, height), p);
 		}
     }
 	
@@ -610,9 +611,7 @@ public class DrawThread extends Thread{
 
 
 	public void setAngle(float ax, float ay){
-		//setInformation(
-		//	""+ax+"   "+ay);
-
+		
 		if (Math.abs(ay) > 1 || Math.abs(ax) > 1){
 			if (ax > ay && ax > 0)
 				mAngle = 0;

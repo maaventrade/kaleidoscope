@@ -14,10 +14,12 @@ public class MainActivity  extends Activity   implements SensorEventListener
 {
 
 	private SensorManager sensorManager; 
-	double ax,ay,az; // these are the acceleration in x,y and z axis
+	private double ax,ay,az; // these are the acceleration in x,y and z axis
 	
 	private SurfaceViewCamera mSurfaceViewCamera;
 	private SurfaceViewDrawable mSurfaceViewDrawable;
+	
+	private DialogSettings dialog;
 	
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
@@ -92,15 +94,16 @@ public class MainActivity  extends Activity   implements SensorEventListener
 		mSurfaceViewDrawable.touchEventCallback = new TouchEventCallback(){
 			@Override
 			public void callbackCall() {
-				DialogSettings dialog = new DialogSettings(MainActivity.this, mSurfaceViewCamera, 
-						mSurfaceViewDrawable, mSurfaceViewDrawable.getDrawThread() ); 
+				dialog = new DialogSettings(MainActivity.this, mSurfaceViewCamera, 
+						mSurfaceViewDrawable, mSurfaceViewDrawable.getDrawThread() );
+				
 				dialog.paramChangedCallback  = new DialogSettings.
 					ParamChangedCallback(){
 
 					@Override
 					public void paramChanged(String name)
 					{
-						// TODO: Implement this method
+						
 					}
 
 					@Override
@@ -157,7 +160,10 @@ public class MainActivity  extends Activity   implements SensorEventListener
     protected void onPause()
     {
         super.onPause();
-		this.sensorManager.unregisterListener(this); 
+		this.sensorManager.unregisterListener(this);
+		
+		if (dialog != null && dialog.isShowing())
+			dialog.dismiss();
 
     }
     
@@ -228,6 +234,7 @@ public class MainActivity  extends Activity   implements SensorEventListener
 		      last_z = az;
 		    }			
 		}
+/*		
 		float X_Axis = event.values[0]; 
         float Y_Axis = event.values[1]; 
 		
@@ -235,6 +242,7 @@ public class MainActivity  extends Activity   implements SensorEventListener
 			mSurfaceViewDrawable.getDrawThread().setAngle(X_Axis, 
 							Y_Axis);
 		}
+*/		
 			
 /*
         if((X_Axis <= 6 && X_Axis >= -6) && Y_Axis > 5){
@@ -257,38 +265,3 @@ public class MainActivity  extends Activity   implements SensorEventListener
 
 	
 }
-
-/*
-
-
-float[] g = new float[3]; 
-g = event.values.clone();
-
-double norm_Of_g = Math.sqrt(g[0] * g[0] + g[1] * g[1] + g[2] * g[2]);
-
-// Normalize the accelerometer vector
-g[0] = g[0] / norm_Of_g
-g[1] = g[1] / norm_Of_g
-g[2] = g[2] / norm_Of_g
-Then the inclination can be calculated as
-
-int inclination = (int) Math.round(Math.toDegrees(Math.acos(g[2])));
-Thus
-
-if (inclination < 25 || inclination > 155)
-{
-    // device is flat
-}
-else
-{
-    // device is not flat
-}
-For the case of laying flat, you have to use a compass to see how much the device is rotating from the starting position.
-
-For the case of not flat, the rotation (tilt) is calculated as follow
-
-int rotation = (int) Math.round(Math.toDegrees(Math.atan2(g[0], g[1])));
-Now rotation = 0 means the device is in normal position. That is portrait witho
-
-
-*/
