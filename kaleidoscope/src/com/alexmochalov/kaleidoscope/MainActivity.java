@@ -1,27 +1,14 @@
 package com.alexmochalov.kaleidoscope;
 
-import com.alexmochalov.kaleidoscope.SurfaceViewDrawable.TouchEventCallback;
-import com.alexmochalov.kaleidoscope.R;
-
-import android.annotation.SuppressLint;
-import android.app.ActionBar;
-import android.app.Activity;
-import android.content.pm.ActivityInfo;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
-import android.hardware.Camera.CameraInfo;
-import android.os.Build;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.Toast;
+import android.app.*;
+import android.content.pm.*;
+import android.content.res.*;
+import android.hardware.*;
+import android.os.*;
+import android.view.*;
+import android.widget.*;
+import com.alexmochalov.kaleidoscope.*;
+import com.alexmochalov.kaleidoscope.SurfaceViewDrawable.*;
 
 public class MainActivity  extends Activity   implements SensorEventListener
 {
@@ -32,12 +19,24 @@ public class MainActivity  extends Activity   implements SensorEventListener
 	private SurfaceViewCamera mSurfaceViewCamera;
 	private SurfaceViewDrawable mSurfaceViewDrawable;
 	
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+		super.onConfigurationChanged(newConfig);
+
+		// Checks the orientation of the screen
+		if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+			Toast.makeText(this, "landscape", Toast.LENGTH_SHORT).show();
+		} else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+			Toast.makeText(this, "portrait", Toast.LENGTH_SHORT).show();
+		}
+	}
+	
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
 
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+       // setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         
         //getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
