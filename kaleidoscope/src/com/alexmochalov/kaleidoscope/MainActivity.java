@@ -29,7 +29,7 @@ public class MainActivity  extends Activity   implements SensorEventListener
 		} else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
 			Toast.makeText(this, "portrait", Toast.LENGTH_SHORT).show();
 		}
-	}
+	}    
 	
     @Override
     public void onCreate(Bundle savedInstanceState)
